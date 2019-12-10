@@ -2,11 +2,18 @@
 
 namespace FileStoreToDbStore
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Started!");
+            //mysql or mongodb
+            IDbStore dbStore = DbStoreFactory.GetDbStore("mongodb");
+            dbStore.ReadFile("/PointOfInterestCoordinatesList.txt");
+            dbStore.ConnectToDatabase("PointOfInterest");
+            dbStore.InsertData();
+            Console.WriteLine("Done!!");
+            Console.ReadKey(true);
         }
     }
 }
